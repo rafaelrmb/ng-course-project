@@ -29,7 +29,7 @@ export class RecipeListComponent {
       ),
     ];
 
-    setInterval(() => {
+    setTimeout(() => {
       this.selectedRecipe.emit(this.recipes[0]);
     }, 5000); //practice with spinners and ng template.
   }
