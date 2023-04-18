@@ -5,18 +5,6 @@
     class="mt-3 list-group-item list-group-item-action"
     *ngFor="let recipe of recipes"
   >
-    <div class="card">
-      <img
-        src="{{ recipe.imagePath }}"
-        class="card-img-top"
-        alt="recipe picture"
-      />
-      <div class="card-body">
-        <h5 class="card-title">{{ recipe.name }}</h5>
-        <p class="card-text">
-          {{ recipe.description }}
-        </p>
-      </div>
-    </div>
+    <app-recipe-item [recipe]="recipe"></app-recipe-item>
   </a>
 </div>
