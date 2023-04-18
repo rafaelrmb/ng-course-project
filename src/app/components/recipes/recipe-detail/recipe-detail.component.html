@@ -1,44 +1,60 @@
-<div class="row">
-  <div class="col-xs-12">
-    <img src="" alt="" class="img-responsive" />
-  </div>
-</div>
-<div class="row">
-  <div class="col-xs-12">
-    <h1>Name</h1>
-  </div>
-</div>
+<div class="container">
+  <h2>Details</h2>
+  <div #details *ngIf="selectedRecipe !== undefined; else detailsNotFound">
+    <div class="row">
+      <div class="col-xs-12">
+        <img
+          src="{{ selectedRecipe.imagePath }}"
+          alt=""
+          class="img-responsive img-thumbnail"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12">
+        <p>{{ selectedRecipe.name }}</p>
+      </div>
+    </div>
 
-<div class="row">
-  <div class="col-xs-12">
-    <div class="dropdown open">
-      <button
-        class="btn btn-primary dropdown-toggle"
-        type="button"
-        id="triggerId"
-        data-bs-toggle="dropdown"
-        aria-haspopup="true"
-        aria-expanded="false"
-      >
-        Manage Recipe
-      </button>
-      <div class="dropdown-menu" aria-labelledby="triggerId">
-        <button class="dropdown-item" href="#">Add ingredients to List</button>
-        <button class="dropdown-item" href="#">Edit Recipe</button>
-        <button class="dropdown-item btn-danger" href="#">Delete Recipe</button>
+    <div class="row">
+      <div class="col-xs-12">
+        <p>{{ selectedRecipe.description }}</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <p>ingredients</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="dropdown open">
+          <button
+            class="btn btn-primary dropdown-toggle"
+            type="button"
+            id="triggerId"
+            data-bs-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            Manage Recipe
+          </button>
+          <div class="dropdown-menu" aria-labelledby="triggerId">
+            <button class="dropdown-item" href="#">
+              Add ingredients to List
+            </button>
+            <button class="dropdown-item" href="#">Edit Recipe</button>
+            <button class="dropdown-item btn-danger" href="#">
+              Delete Recipe
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12">
-    <h2>Description</h2>
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-xs-12">
-    <p>ingredients</p>
-  </div>
+  <ng-template #detailsNotFound>
+    <p>Select a recipe to view its details</p>
+  </ng-template>
 </div>

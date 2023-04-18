@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Recipe } from '../../../models/recipe/recipe.model';
 
 @Component({
@@ -7,6 +7,7 @@ import { Recipe } from '../../../models/recipe/recipe.model';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent {
+  @Output() selectedRecipe = new EventEmitter<Recipe>();
   recipes: Recipe[] = [];
 
   constructor() {
@@ -17,10 +18,19 @@ export class RecipeListComponent {
         'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG'
       ),
       new Recipe(
-        'Tasty Schnitzel',
-        'A super-tasty Schnitzel - just awesome!',
-        'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG'
+        'Chicken Alfredo',
+        'Creamy pasta dish with chicken and Alfredo sauce',
+        'https://bellyfull.net/wp-content/uploads/2021/02/Chicken-Alfredo-blog-4-768x1024.jpg'
+      ),
+      new Recipe(
+        'Beef Stroganoff',
+        'Russian dish with sautéed beef, onions, and mushrooms in creamy sauce',
+        'https://lilluna.com/wp-content/uploads/2017/06/beef-stroganoff-final-resize-3.jpg'
       ),
     ];
+  }
+
+  onRecipeSelected(recipe: Recipe) {
+    this.selectedRecipe.emit(recipe);
   }
 }
