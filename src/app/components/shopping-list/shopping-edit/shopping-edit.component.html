@@ -13,7 +13,13 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button class="btn btn-success" type="submit">Add</button>
+          <button
+            class="btn btn-success"
+            type="button"
+            (click)="addIngredient(name.value, amount.value)"
+          >
+            Add
+          </button>
           <button class="ms-3 btn btn-danger" type="button">Delete</button>
           <button class="ms-3 btn btn-primary" type="reset">Clear</button>
         </div>
