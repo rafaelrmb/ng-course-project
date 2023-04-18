@@ -28,6 +28,10 @@ export class RecipeListComponent {
         'https://lilluna.com/wp-content/uploads/2017/06/beef-stroganoff-final-resize-3.jpg'
       ),
     ];
+
+    setInterval(() => {
+      this.selectedRecipe.emit(this.recipes[0]);
+    }, 5000); //practice with spinners and ng template.
   }
 
   onRecipeSelected(recipe: Recipe) {

@@ -55,6 +55,11 @@
     </div>
   </div>
   <ng-template #detailsNotFound>
-    <p>Select a recipe to view its details</p>
+    <p>Select a recipe to view its details or wait 5 seconds for it to load</p>
+    <div>
+      <div class="spinner-border text-primary spinner-border-md" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+    </div>
   </ng-template>
 </div>
