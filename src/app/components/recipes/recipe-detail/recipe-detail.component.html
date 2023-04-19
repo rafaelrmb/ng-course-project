@@ -27,26 +27,21 @@
         <p>ingredients</p>
       </div>
     </div>
-
     <div class="row">
-      <div class="col-xs-12">
-        <div class="dropdown open">
+      <div class="col">
+        <div ngbDropdown class="d-inline-block">
           <button
-            class="btn btn-primary dropdown-toggle"
             type="button"
-            id="triggerId"
-            data-bs-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
+            class="btn btn-primary"
+            id="dropdownBasic1"
+            ngbDropdownToggle
           >
             Manage Recipe
           </button>
-          <div class="dropdown-menu" aria-labelledby="triggerId">
-            <button class="dropdown-item" href="#">
-              Add ingredients to List
-            </button>
-            <button class="dropdown-item" href="#">Edit Recipe</button>
-            <button class="dropdown-item btn-danger" href="#">
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <button ngbDropdownItem>To Shopping List</button>
+            <button ngbDropdownItem>Edit Recipe</button>
+            <button class="btn btn-danger" ngbDropdownItem>
               Delete Recipe
             </button>
           </div>
