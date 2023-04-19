@@ -12,6 +12,7 @@
     >
       <span class="navbar-toggler-icon"></span>
     </button>
+
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="mb-2 navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
@@ -28,20 +29,16 @@
             >Shopping List</a
           >
         </li>
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            role="button"
-            data-bs-toggle="dropdown"
-            aria-expanded="false"
-          >
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Save data</a></li>
-            <li><a class="dropdown-item" href="#">Fetch data</a></li>
-          </ul>
+        <li>
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-light" id="dropdownMenu1" ngbDropdownToggle>
+              Toggle dropdown
+            </button>
+            <div ngbDropdownMenu aria-labelledby="dropdownMenu1">
+              <button class="dropdown-item">Action - 1</button>
+              <button class="dropdown-item">Action - 2</button>
+            </div>
+          </div>
         </li>
       </ul>
     </div>
