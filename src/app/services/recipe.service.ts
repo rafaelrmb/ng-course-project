@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe/recipe.model';
+import { Ingredient } from '../models/ingredient/ingredient.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,17 +12,28 @@ export class RecipeService {
     new Recipe(
       'Tasty Schnitzel',
       'A super-tasty Schnitzel - just awesome!',
-      'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG'
+      'https://upload.wikimedia.org/wikipedia/commons/7/72/Schnitzel.JPG',
+      [new Ingredient('Meat', 1), new Ingredient('French Fries', 20)]
     ),
     new Recipe(
       'Chicken Alfredo',
       'Creamy pasta dish with chicken and Alfredo sauce',
-      'https://bellyfull.net/wp-content/uploads/2021/02/Chicken-Alfredo-blog-4-768x1024.jpg'
+      'https://bellyfull.net/wp-content/uploads/2021/02/Chicken-Alfredo-blog-4-768x1024.jpg',
+      [
+        new Ingredient('Buns', 2),
+        new Ingredient('Meat', 1),
+        new Ingredient('Cheese', 1),
+      ]
     ),
     new Recipe(
       'Beef Stroganoff',
       'Russian dish with sautéed beef, onions, and mushrooms in creamy sauce',
-      'https://lilluna.com/wp-content/uploads/2017/06/beef-stroganoff-final-resize-3.jpg'
+      'https://lilluna.com/wp-content/uploads/2017/06/beef-stroganoff-final-resize-3.jpg',
+      [
+        new Ingredient('Meat', 1),
+        new Ingredient('Cheese', 1),
+        new Ingredient('Onions', 1),
+      ]
     ),
   ];
 
@@ -34,10 +46,11 @@ export class RecipeService {
   addNewRecipe(
     recipeName: string,
     recipeDescription: string,
-    recipeImagePath: string
+    recipeImagePath: string,
+    ingredients: Ingredient[]
   ) {
     this.recipesList.push(
-      new Recipe(recipeName, recipeDescription, recipeImagePath)
+      new Recipe(recipeName, recipeDescription, recipeImagePath, ingredients)
     );
   }
 
