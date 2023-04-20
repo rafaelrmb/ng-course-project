@@ -47,11 +47,14 @@
             Manage Recipe
           </button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <button ngbDropdownItem>To Shopping List</button>
-            <button ngbDropdownItem>Edit Recipe</button>
-            <button class="btn btn-danger" ngbDropdownItem>
-              Delete Recipe
+            <button
+              ngbDropdownItem
+              (click)="addToShoppingList(selectedRecipe.ingredients)"
+            >
+              To Shopping List
             </button>
+            <button ngbDropdownItem>Edit Recipe</button>
+            <button ngbDropdownItem>Delete Recipe</button>
           </div>
         </div>
       </div>
