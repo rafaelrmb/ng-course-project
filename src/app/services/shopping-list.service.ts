@@ -15,6 +15,16 @@ export class ShoppingListService {
   constructor() {}
 
   addNewIngredients(newIngredients: Ingredient) {
+    if (!newIngredients || !newIngredients.name) {
+      alert('Please enter a valid ingredient');
+      return;
+    }
+
+    if (!newIngredients.amount || newIngredients.amount <= 0) {
+      alert('Please enter a valid amount');
+      return;
+    }
+
     if (
       this.ingredientsList.find(
         (ingredient) => ingredient.name === newIngredients.name
