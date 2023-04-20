@@ -15,11 +15,27 @@ export class ShoppingListService {
   constructor() {}
 
   addNewIngredients(newIngredients: Ingredient) {
+    if (
+      this.ingredientsList.find(
+        (ingredient) => ingredient.name === newIngredients.name
+      )
+    ) {
+      this.increaseIngredientAmount(newIngredients);
+      return;
+    }
+
     this.ingredientsList.push(newIngredients);
     this.updatedList.emit(this.ingredientsList.slice());
   }
 
   getIngredientsList() {
     return this.ingredientsList.slice();
+  }
+
+  increaseIngredientAmount(ingredient: Ingredient) {
+    const index = this.ingredientsList.findIndex(
+      (ingredientInList) => ingredientInList.name === ingredient.name
+    );
+    this.ingredientsList[index].amount += ingredient.amount;
   }
 }
