@@ -1,5 +1,5 @@
 import { RecipeService } from 'src/app/services/recipe.service';
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Recipe } from 'src/app/models/recipe/recipe.model';
 
 @Component({
@@ -8,20 +8,11 @@ import { Recipe } from 'src/app/models/recipe/recipe.model';
   styleUrls: ['./recipe-list.component.css'],
 })
 export class RecipeListComponent implements OnInit {
-  @Output() selectedRecipe = new EventEmitter<Recipe>();
   recipes: Recipe[] = [];
 
-  constructor(private recipeService: RecipeService) {
-    setTimeout(() => {
-      this.selectedRecipe.emit(this.recipes[0]);
-    }, 5000); //practice with spinners and ng template.
-  }
+  constructor(private recipeService: RecipeService) {}
 
   ngOnInit(): void {
     this.recipes = this.recipeService.getRecipes();
-  }
-
-  onRecipeSelected(recipe: Recipe) {
-    this.selectedRecipe.emit(recipe);
   }
 }
