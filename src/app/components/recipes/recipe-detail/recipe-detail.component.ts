@@ -16,7 +16,6 @@ export class RecipeDetailComponent {
   addToShoppingList(ingredientsList: Ingredient[]) {
     for (const ingredient of ingredientsList) {
       this.shoppingListService.addNewIngredients(ingredient);
-      console.log(ingredient);
     }
   }
 }
