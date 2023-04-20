@@ -16,7 +16,9 @@
           <button
             class="btn btn-success"
             type="button"
-            (click)="addIngredient(name.value, amount.value)"
+            (click)="
+              addNewIngredients({ name: name.value, amount: +amount.value })
+            "
           >
             Add
           </button>
