@@ -1,6 +1,6 @@
 <nav class="mb-3 navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Angular Project</a>
+    <a class="navbar-brand" routerLink="/">Angular Project</a>
     <button
       class="navbar-toggler"
       type="button"
@@ -19,13 +19,16 @@
           <a
             class="nav-link active"
             aria-current="page"
-            href="#"
+            routerLink="/recipes"
             (click)="togglePage('recipes')"
             >Recipes</a
           >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" (click)="togglePage('shopping')"
+          <a
+            class="nav-link"
+            routerLink="/shopping-list"
+            (click)="togglePage('shopping')"
             >Shopping List</a
           >
         </li>
