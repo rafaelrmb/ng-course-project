@@ -1,24 +1,24 @@
 <div class="container">
   <h2>Details</h2>
-  <div #details *ngIf="selectedRecipe !== undefined; else detailsNotFound">
+  <div>
     <div class="row">
       <div class="col-xs-12">
         <img
-          src="{{ selectedRecipe.imagePath }}"
-          alt="{{ selectedRecipe.name }} recipe image"
+          src="{{ recipe.imagePath }}"
+          alt="{{ recipe.name }} recipe image"
           class="img-responsive img-thumbnail"
         />
       </div>
     </div>
     <div class="row">
       <div class="col-xs-12">
-        <h1 class="border-bottom">{{ selectedRecipe.name }}</h1>
+        <h1 class="border-bottom">{{ recipe.name }}</h1>
       </div>
     </div>
 
     <div class="row">
       <div class="col-xs-12">
-        <p>{{ selectedRecipe.description }}</p>
+        <p>{{ recipe.description }}</p>
       </div>
     </div>
 
@@ -27,7 +27,7 @@
         <ul class="list-group">
           <li
             class="list-group-item"
-            *ngFor="let ingredient of selectedRecipe.ingredients"
+            *ngFor="let ingredient of recipe.ingredients"
           >
             {{ ingredient.name }} - {{ ingredient.amount }}
           </li>
@@ -49,7 +49,7 @@
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <button
               ngbDropdownItem
-              (click)="addToShoppingList(selectedRecipe.ingredients)"
+              (click)="addToShoppingList(recipe.ingredients)"
             >
               To Shopping List
             </button>
@@ -60,13 +60,4 @@
       </div>
     </div>
   </div>
-
-  <ng-template #detailsNotFound>
-    <p>Select a recipe to view its details or wait 5 seconds for it to load</p>
-    <div>
-      <div class="spinner-border text-primary spinner-border-md" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
-    </div>
-  </ng-template>
 </div>
