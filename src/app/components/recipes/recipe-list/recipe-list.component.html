@@ -1,7 +1,7 @@
 <button class="btn btn-primary">New Recipe</button>
 <div class="list-group">
   <a
-    href="#"
+    routerLink="/recipes/{{ recipeItem.name }}"
     class="mt-3 list-group-item list-group-item-action"
     *ngFor="let recipeItem of recipes"
   >
