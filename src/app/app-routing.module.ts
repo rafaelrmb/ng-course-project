@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { RecipeDetailComponent } from './components/recipes/recipe-detail/recipe-detail.component';
+import { RecipeNotFoundComponent } from './components/recipes/recipe-not-found/recipe-not-found.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,11 @@ const routes: Routes = [
     path: 'recipes',
     component: RecipesComponent,
     children: [
+      {
+        path: '',
+        pathMatch: 'full',
+        component: RecipeNotFoundComponent,
+      },
       {
         path: ':name',
         component: RecipeDetailComponent,
