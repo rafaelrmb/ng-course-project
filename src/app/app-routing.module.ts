@@ -4,6 +4,7 @@ import { RecipesComponent } from './components/recipes/recipes.component';
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { RecipeDetailComponent } from './components/recipes/recipe-detail/recipe-detail.component';
 import { RecipeNotFoundComponent } from './components/recipes/recipe-not-found/recipe-not-found.component';
+import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 
 const routes: Routes = [
   {
@@ -21,8 +22,16 @@ const routes: Routes = [
         component: RecipeNotFoundComponent,
       },
       {
+        path: 'new',
+        component: RecipeEditComponent,
+      },
+      {
         path: ':name',
         component: RecipeDetailComponent,
+      },
+      {
+        path: ':name/edit',
+        component: RecipeEditComponent,
       },
     ],
   },

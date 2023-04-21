@@ -34,4 +34,8 @@ export class RecipeDetailComponent implements OnInit {
       }
     });
   }
+
+  editRecipe() {
+    this.router.navigate(['edit'], { relativeTo: this.route });
+  }
 }

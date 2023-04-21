@@ -12,6 +12,7 @@ import { ShoppingEditComponent } from './components/shopping-list/shopping-edit/
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeNotFoundComponent } from './components/recipes/recipe-not-found/recipe-not-found.component';
+import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { RecipeNotFoundComponent } from './components/recipes/recipe-not-found/r
     ShoppingEditComponent,
     RecipesComponent,
     RecipeNotFoundComponent,
+    RecipeEditComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule],
   providers: [],
