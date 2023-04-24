@@ -48,6 +48,11 @@ export class ShoppingListService {
     return this.ingredientsList[index];
   }
 
+  editIngredient(index: number, updateInfo: Ingredient) {
+    this.ingredientsList[index] = updateInfo;
+    this.updatedList.next(this.ingredientsList.slice());
+  }
+
   increaseIngredientAmount(ingredient: Ingredient) {
     const index = this.ingredientsList.findIndex(
       (ingredientInList) =>
