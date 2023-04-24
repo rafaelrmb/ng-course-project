@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { Ingredient } from 'src/app/models/ingredient/ingredient.model';
 import { ShoppingListService } from 'src/app/services/shopping-list.service';
 
@@ -8,8 +9,12 @@ import { ShoppingListService } from 'src/app/services/shopping-list.service';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css'],
 })
-export class ShoppingEditComponent implements OnInit {
+export class ShoppingEditComponent implements OnInit, OnDestroy {
   shoppingListForm!: FormGroup;
+  editingSubscription!: Subscription;
+  editMode = false;
+  editedItemIndex!: number;
+  editedItem!: Ingredient;
 
   constructor(
     private shoppingListService: ShoppingListService,
@@ -23,6 +28,24 @@ export class ShoppingEditComponent implements OnInit {
         amount: ['', [Validators.required, Validators.min(1)]],
       }),
     });
+
+    this.editingSubscription = this.shoppingListService.editingList.subscribe(
+      (index: number) => {
+        this.editMode = true;
+        this.editedItemIndex = index;
+        this.editedItem = this.shoppingListService.getIngredient(index);
+        this.shoppingListForm.setValue({
+          aboutIngredient: {
+            name: this.editedItem.name,
+            amount: this.editedItem.amount,
+          },
+        });
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.editingSubscription.unsubscribe();
   }
 
   addNewIngredients() {
@@ -36,5 +59,12 @@ export class ShoppingEditComponent implements OnInit {
           .toLowerCase(),
       amount: this.shoppingListForm.value.aboutIngredient.amount,
     });
+  }
+
+  editIngredient() {
+    this.shoppingListService.editIngredient(
+      this.editedItemIndex,
+      this.shoppingListForm.value.aboutIngredient
+    );
   }
 }
