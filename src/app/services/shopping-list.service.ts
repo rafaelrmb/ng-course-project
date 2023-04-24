@@ -44,6 +44,10 @@ export class ShoppingListService {
     return this.ingredientsList.slice();
   }
 
+  getIngredient(index: number) {
+    return this.ingredientsList[index];
+  }
+
   increaseIngredientAmount(ingredient: Ingredient) {
     const index = this.ingredientsList.findIndex(
       (ingredientInList) =>
