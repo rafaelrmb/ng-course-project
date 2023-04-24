@@ -11,6 +11,15 @@
               id="name"
               formControlName="name"
             />
+            <p
+              class="form-text text-muted"
+              *ngIf="
+                shoppingListForm.get('aboutIngredient.name')?.invalid &&
+                shoppingListForm.get('aboutIngredient.name')?.touched
+              "
+            >
+              Please insert a valid name for the ingredient
+            </p>
           </div>
 
           <div class="col-sm-2 form-group">
@@ -21,6 +30,15 @@
               id="amount"
               formControlName="amount"
             />
+            <p
+              class="form-text text-muted"
+              *ngIf="
+                shoppingListForm.get('aboutIngredient.amount')?.invalid &&
+                shoppingListForm.get('aboutIngredient.amount')?.touched
+              "
+            >
+              Amount must be positive
+            </p>
           </div>
         </div>
       </div>
