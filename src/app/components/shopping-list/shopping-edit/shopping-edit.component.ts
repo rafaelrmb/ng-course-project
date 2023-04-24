@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Ingredient } from 'src/app/models/ingredient/ingredient.model';
 import { ShoppingListService } from 'src/app/services/shopping-list.service';
 
@@ -7,10 +8,28 @@ import { ShoppingListService } from 'src/app/services/shopping-list.service';
   templateUrl: './shopping-edit.component.html',
   styleUrls: ['./shopping-edit.component.css'],
 })
-export class ShoppingEditComponent {
-  constructor(private shoppingListService: ShoppingListService) {}
+export class ShoppingEditComponent implements OnInit {
+  shoppingListForm!: FormGroup;
 
-  addNewIngredients(newIngredients: Ingredient) {
-    this.shoppingListService.addNewIngredients(newIngredients);
+  constructor(
+    private shoppingListService: ShoppingListService,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.shoppingListForm = this.fb.group({
+      aboutIngredient: this.fb.group({
+        name: ['', Validators.required],
+        amount: ['', [Validators.required, Validators.min(1)]],
+      }),
+    });
+  }
+
+  addNewIngredients() {
+    this.shoppingListService.addNewIngredients({
+      name: this.shoppingListForm.value.aboutIngredient.name,
+      amount: this.shoppingListForm.value.aboutIngredient.amount,
+    });
+    console.log(this.shoppingListForm);
   }
 }
