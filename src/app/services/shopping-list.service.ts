@@ -53,6 +53,11 @@ export class ShoppingListService {
     this.updatedList.next(this.ingredientsList.slice());
   }
 
+  deleteIngredient(index: number) {
+    this.ingredientsList.splice(index, 1);
+    this.updatedList.next(this.ingredientsList.slice());
+  }
+
   increaseIngredientAmount(ingredient: Ingredient) {
     const index = this.ingredientsList.findIndex(
       (ingredientInList) =>
