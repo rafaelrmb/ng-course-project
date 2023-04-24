@@ -5,6 +5,7 @@
     <div class="list-group">
       <a
         class="list-group-item list-group-item-action"
+        role="button"
         *ngFor="let ingredient of ingredients; let index = index"
         (click)="selectItem(index)"
         >{{ ingredient.name }} ({{ ingredient.amount }})</a
