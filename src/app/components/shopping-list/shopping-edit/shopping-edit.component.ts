@@ -27,9 +27,14 @@ export class ShoppingEditComponent implements OnInit {
 
   addNewIngredients() {
     this.shoppingListService.addNewIngredients({
-      name: this.shoppingListForm.value.aboutIngredient.name,
+      name:
+        this.shoppingListForm.value.aboutIngredient.name
+          .substring(0, 1)
+          .toUpperCase() +
+        this.shoppingListForm.value.aboutIngredient.name
+          .substring(1)
+          .toLowerCase(),
       amount: this.shoppingListForm.value.aboutIngredient.amount,
     });
-    console.log(this.shoppingListForm);
   }
 }
