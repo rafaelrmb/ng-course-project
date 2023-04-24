@@ -1,12 +1,13 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Recipe } from '../models/recipe/recipe.model';
 import { Ingredient } from '../models/ingredient/ingredient.model';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecipeService {
-  recipeSelected = new EventEmitter<Recipe>();
+  recipeSelected = new Subject<Recipe>();
 
   private recipesList: Recipe[] = [
     new Recipe(
@@ -39,7 +40,7 @@ export class RecipeService {
 
   constructor() {
     setTimeout(() => {
-      this.recipeSelected.emit(this.recipesList[0]);
+      this.recipeSelected.next(this.recipesList[0]);
     }, 5000); //practice with spinners and ng template.
   }
 
