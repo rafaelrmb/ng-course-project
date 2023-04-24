@@ -45,7 +45,8 @@ export class ShoppingListService {
 
   increaseIngredientAmount(ingredient: Ingredient) {
     const index = this.ingredientsList.findIndex(
-      (ingredientInList) => ingredientInList.name === ingredient.name
+      (ingredientInList) =>
+        ingredientInList.name.toLowerCase() === ingredient.name.toLowerCase()
     );
     this.ingredientsList[index].amount += ingredient.amount;
   }
