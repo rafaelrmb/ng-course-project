@@ -26,4 +26,8 @@ export class ShoppingListComponent {
   ngOnDestroy(): void {
     this.listChangeSub.unsubscribe();
   }
+
+  selectItem(index: number) {
+    this.shoppingListService.editingList.next(index);
+  }
 }
