@@ -9,6 +9,15 @@
           id="name"
           formControlName="name"
         />
+        <p
+          class="form-text text-muted"
+          *ngIf="
+            newRecipeForm.get('name')?.invalid &&
+            newRecipeForm.get('name')?.touched
+          "
+        >
+          Please insert a valid name
+        </p>
       </div>
 
       <div class="form-group mb-2">
@@ -19,6 +28,15 @@
           id="description"
           formControlName="description"
         />
+        <p
+          class="form-text text-muted"
+          *ngIf="
+            newRecipeForm.get('description')?.invalid &&
+            newRecipeForm.get('description')?.touched
+          "
+        >
+          Please insert a valid description
+        </p>
       </div>
 
       <div class="form-group mb-4">
@@ -29,11 +47,17 @@
           id="imagePath"
           formControlName="imagePath"
         />
+        <p
+          class="form-text text-muted"
+          *ngIf="!newRecipeForm.get('imagePath')?.touched"
+        >
+          Images are optional to your recipe
+        </p>
       </div>
 
       <div class="form-group mb-4" formArrayName="ingredients">
         <button
-          class="btn btn-primary mb-2"
+          class="btn btn-primary mb-4"
           type="button"
           (click)="addIngredients()"
         >
@@ -46,13 +70,30 @@
           <h4>Ingredient {{ index + 1 }}</h4>
           <label for="name">Name</label>
           <input type="text" class="form-control" formControlName="name" />
-
+          <p
+            class="form-text text-muted"
+            *ngIf="
+              newRecipeForm.get('ingredients.' + index + '.name')?.invalid &&
+              newRecipeForm.get('ingredients.' + index + '.name')?.touched
+            "
+          >
+            Please insert a valid name
+          </p>
           <label for="amount">Amount</label>
           <input
             type="number"
             class="form-control mb-2"
             formControlName="amount"
           />
+          <p
+            class="form-text text-muted"
+            *ngIf="
+              newRecipeForm.get('ingredients.' + index + '.amount')?.invalid &&
+              newRecipeForm.get('ingredients.' + index + '.amount')?.touched
+            "
+          >
+            Amount must be a positive number
+          </p>
         </div>
       </div>
 
