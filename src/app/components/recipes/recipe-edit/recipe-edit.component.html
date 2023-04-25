@@ -63,37 +63,49 @@
         >
           Add Ingredient
         </button>
-        <div
-          *ngFor="let ingredient of ingredientControls; let index = index"
-          formGroupName="{{ index }}"
-        >
-          <h4>Ingredient {{ index + 1 }}</h4>
-          <label for="name">Name</label>
-          <input type="text" class="form-control" formControlName="name" />
-          <p
-            class="form-text text-muted"
-            *ngIf="
-              newRecipeForm.get('ingredients.' + index + '.name')?.invalid &&
-              newRecipeForm.get('ingredients.' + index + '.name')?.touched
-            "
+        <div class="d-flex gap-4 flex-wrap">
+          <div
+            *ngFor="let ingredient of ingredientControls; let index = index"
+            formGroupName="{{ index }}"
+            class="border-end pe-4 mb-4"
           >
-            Please insert a valid name
-          </p>
-          <label for="amount">Amount</label>
-          <input
-            type="number"
-            class="form-control mb-2"
-            formControlName="amount"
-          />
-          <p
-            class="form-text text-muted"
-            *ngIf="
-              newRecipeForm.get('ingredients.' + index + '.amount')?.invalid &&
-              newRecipeForm.get('ingredients.' + index + '.amount')?.touched
-            "
-          >
-            Amount must be a positive number
-          </p>
+            <h4>Ingredient {{ index + 1 }}</h4>
+            <label for="name">Name</label>
+            <input type="text" class="form-control" formControlName="name" />
+            <p
+              class="form-text text-muted"
+              *ngIf="
+                newRecipeForm.get('ingredients.' + index + '.name')?.invalid &&
+                newRecipeForm.get('ingredients.' + index + '.name')?.touched
+              "
+            >
+              Please insert a valid name
+            </p>
+            <label for="amount">Amount</label>
+            <input
+              type="number"
+              class="form-control mb-2"
+              formControlName="amount"
+            />
+            <p
+              class="form-text text-muted"
+              *ngIf="
+                newRecipeForm.get('ingredients.' + index + '.amount')
+                  ?.invalid &&
+                newRecipeForm.get('ingredients.' + index + '.amount')?.touched
+              "
+            >
+              Amount must be a positive number
+            </p>
+            <button
+              type="button"
+              class="btn btn-danger my-2"
+              (click)="removeIngredient(index)"
+              *ngIf="isEditing"
+            >
+              Remove
+            </button>
+          </div>
         </div>
       </div>
 
