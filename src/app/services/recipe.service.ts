@@ -44,15 +44,8 @@ export class RecipeService {
     }, 5000); //practice with spinners and ng template.
   }
 
-  addNewRecipe(
-    recipeName: string,
-    recipeDescription: string,
-    recipeImagePath: string,
-    ingredients: Ingredient[]
-  ) {
-    this.recipesList.push(
-      new Recipe(recipeName, recipeDescription, recipeImagePath, ingredients)
-    );
+  addNewRecipe(recipe: Recipe) {
+    this.recipesList.push(recipe);
   }
 
   getRecipes() {
