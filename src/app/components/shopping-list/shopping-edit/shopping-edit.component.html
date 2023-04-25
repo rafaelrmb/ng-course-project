@@ -61,6 +61,7 @@
             class="ms-3 btn btn-danger"
             type="button"
             (click)="deleteIngredient()"
+            *ngIf="editMode"
           >
             Delete
           </button>
