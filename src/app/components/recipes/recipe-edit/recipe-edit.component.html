@@ -101,9 +101,20 @@
         type="submit"
         class="btn btn-success me-4"
         [disabled]="newRecipeForm.invalid"
+        *ngIf="!isEditing"
       >
         Save
       </button>
+
+      <button
+        type="button"
+        class="btn btn-warning me-4"
+        (click)="editRecipe()"
+        *ngIf="isEditing"
+      >
+        Update
+      </button>
+
       <button type="button" class="btn btn-danger" (click)="cancelCreating()">
         Cancel
       </button>

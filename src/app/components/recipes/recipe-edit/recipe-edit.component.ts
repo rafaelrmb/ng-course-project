@@ -12,6 +12,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
 export class RecipeEditComponent implements OnInit {
   isEditing: boolean = false;
   newRecipeForm!: FormGroup;
+  editRecipeName!: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +38,7 @@ export class RecipeEditComponent implements OnInit {
 
       if (this.isEditing) {
         this.fillFormOnEdit(params);
+        this.editRecipeName = params['name'];
       }
     });
   }
@@ -52,6 +54,16 @@ export class RecipeEditComponent implements OnInit {
 
     this.recipeService.addNewRecipe(newRecipe);
     this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  editRecipe() {
+    this.recipeService.updateRecipe(
+      this.editRecipeName,
+      this.newRecipeForm.value
+    );
+
+    this.isEditing = false;
+    this.router.navigate(['/recipes']);
   }
 
   cancelCreating() {

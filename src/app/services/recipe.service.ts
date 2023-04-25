@@ -50,7 +50,9 @@ export class RecipeService {
     this.updatedRecipeList.next(this.recipesList.slice());
   }
 
-  updateRecipe(index: number, newRecipe: Recipe) {
+  updateRecipe(name: string, newRecipe: Recipe) {
+    const index = this.recipesList.findIndex((recipe) => recipe.name === name);
+
     this.recipesList[index] = newRecipe;
     this.updatedRecipeList.next(this.recipesList.slice());
   }
