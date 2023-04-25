@@ -31,6 +31,14 @@ export class RecipeEditComponent implements OnInit {
       imagePath: [''],
       ingredients: this.fb.array([], Validators.required),
     });
+
+    this.route.params.subscribe((params: Params) => {
+      this.isEditing = params['name'] != null;
+
+      if (this.isEditing) {
+        this.fillFormOnEdit(params);
+      }
+    });
   }
 
   createNewRecipe() {
@@ -62,5 +70,20 @@ export class RecipeEditComponent implements OnInit {
 
   get ingredientControls() {
     return (this.newRecipeForm.get('ingredients') as FormArray).controls;
+  }
+
+  fillFormOnEdit(params: Params) {
+    const selectedRecipe = this.recipeService.getRecipesByName(params['name']);
+
+    selectedRecipe.ingredients.forEach((ingredient) => {
+      this.addIngredients();
+    });
+
+    this.newRecipeForm.setValue({
+      name: selectedRecipe.name,
+      description: selectedRecipe.description,
+      imagePath: selectedRecipe.imagePath,
+      ingredients: selectedRecipe.ingredients,
+    });
   }
 }
