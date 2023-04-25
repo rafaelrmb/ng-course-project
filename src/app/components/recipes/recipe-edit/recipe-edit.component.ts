@@ -22,10 +22,6 @@ export class RecipeEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.params.subscribe((params: Params) => {
-      this.isEditing = params['name'] != null;
-    });
-
     this.newRecipeForm = this.fb.group({
       name: ['', Validators.required],
       description: ['', Validators.required],
