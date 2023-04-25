@@ -75,7 +75,7 @@ export class RecipeEditComponent implements OnInit {
   fillFormOnEdit(params: Params) {
     const selectedRecipe = this.recipeService.getRecipesByName(params['name']);
 
-    selectedRecipe.ingredients.forEach((ingredient) => {
+    selectedRecipe.ingredients.forEach(() => {
       this.addIngredients();
     });
 
