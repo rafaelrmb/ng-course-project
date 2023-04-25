@@ -1,1 +1,71 @@
-<p>recipe-edit works!</p>
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="newRecipeForm" (ngSubmit)="createNewRecipe()">
+      <div class="form-group mb-2">
+        <label for="name">Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="name"
+          formControlName="name"
+        />
+      </div>
+
+      <div class="form-group mb-2">
+        <label for="description">Description</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          formControlName="description"
+        />
+      </div>
+
+      <div class="form-group mb-4">
+        <label for="imagePath">Image Path</label>
+        <input
+          type="text"
+          class="form-control"
+          id="imagePath"
+          formControlName="imagePath"
+        />
+      </div>
+
+      <div class="form-group mb-4" formArrayName="ingredients">
+        <button
+          class="btn btn-primary mb-2"
+          type="button"
+          (click)="addIngredients()"
+        >
+          Add Ingredient
+        </button>
+        <div
+          *ngFor="let ingredient of ingredientControls; let index = index"
+          formGroupName="{{ index }}"
+        >
+          <h4>Ingredient {{ index + 1 }}</h4>
+          <label for="name">Name</label>
+          <input type="text" class="form-control" formControlName="name" />
+
+          <label for="amount">Amount</label>
+          <input
+            type="number"
+            class="form-control mb-2"
+            formControlName="amount"
+          />
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-success me-4"
+        [disabled]="newRecipeForm.invalid"
+      >
+        Save
+      </button>
+      <button type="button" class="btn btn-danger" (click)="cancelCreating()">
+        Cancel
+      </button>
+    </form>
+  </div>
+</div>
