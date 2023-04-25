@@ -8,6 +8,7 @@ import { Subject } from 'rxjs';
 })
 export class RecipeService {
   recipeSelected = new Subject<Recipe>();
+  updatedRecipeList = new Subject<Recipe[]>();
 
   private recipesList: Recipe[] = [
     new Recipe(
@@ -41,11 +42,17 @@ export class RecipeService {
   constructor() {
     setTimeout(() => {
       this.recipeSelected.next(this.recipesList[0]);
-    }, 5000); //practice with spinners and ng template.
+    }, 3000); //practice with spinners and ng template.
   }
 
   addNewRecipe(recipe: Recipe) {
     this.recipesList.push(recipe);
+    this.updatedRecipeList.next(this.recipesList.slice());
+  }
+
+  updateRecipe(index: number, newRecipe: Recipe) {
+    this.recipesList[index] = newRecipe;
+    this.updatedRecipeList.next(this.recipesList.slice());
   }
 
   getRecipes() {

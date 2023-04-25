@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Ingredient } from 'src/app/models/ingredient/ingredient.model';
+import { Recipe } from 'src/app/models/recipe/recipe.model';
+import { RecipeService } from 'src/app/services/recipe.service';
 
 @Component({
   templateUrl: './recipe-edit.component.html',
@@ -14,7 +16,8 @@ export class RecipeEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private recipeService: RecipeService
   ) {}
 
   ngOnInit(): void {
@@ -31,7 +34,16 @@ export class RecipeEditComponent implements OnInit {
   }
 
   createNewRecipe() {
-    console.log(this.newRecipeForm);
+    const newRecipe: Recipe = {
+      name: this.newRecipeForm.value.name,
+      description: this.newRecipeForm.value.description,
+      imagePath:
+        this.newRecipeForm.value.imagePath || 'https://placehold.co/600x400',
+      ingredients: this.newRecipeForm.value.ingredients as Ingredient[],
+    };
+
+    this.recipeService.addNewRecipe(newRecipe);
+    this.router.navigate(['../'], { relativeTo: this.route });
   }
 
   cancelCreating() {
