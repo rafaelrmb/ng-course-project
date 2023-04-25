@@ -5,3 +5,7 @@ input.ng-invalid.ng-touched {
 label {
   margin-bottom: 0.5rem;
 }
+
+img {
+  max-height: 25rem;
+}
