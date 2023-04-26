@@ -7,14 +7,7 @@ import { RecipeService } from 'src/app/services/recipe.service';
   styleUrls: ['./recipe-not-found.component.css'],
 })
 export class RecipeNotFoundComponent {
-  constructor(private router: Router, private recipeService: RecipeService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.router.navigate([
-        '/recipes',
-        this.recipeService.getRecipes()[0].name,
-      ]);
-    }, 3000);
-  }
+  ngOnInit(): void {}
 }
