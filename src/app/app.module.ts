@@ -1,6 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,7 +13,6 @@ import { RecipeDetailComponent } from './components/recipes/recipe-detail/recipe
 import { ShoppingListComponent } from './components/shopping-list/shopping-list.component';
 import { ShoppingEditComponent } from './components/shopping-list/shopping-edit/shopping-edit.component';
 import { RecipesComponent } from './components/recipes/recipes.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeNotFoundComponent } from './components/recipes/recipe-not-found/recipe-not-found.component';
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
 
@@ -28,7 +29,13 @@ import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edi
     RecipeNotFoundComponent,
     RecipeEditComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, ReactiveFormsModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    NgbModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
