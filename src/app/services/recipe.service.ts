@@ -45,6 +45,11 @@ export class RecipeService {
     }, 3000); //practice with spinners and ng template.
   }
 
+  setRecipes(recipes: Recipe[]) {
+    this.recipesList = recipes;
+    this.updatedRecipeList.next(this.recipesList.slice());
+  }
+
   addNewRecipe(recipe: Recipe) {
     this.recipesList.push(recipe);
     this.updatedRecipeList.next(this.recipesList.slice());
@@ -59,7 +64,6 @@ export class RecipeService {
 
   deleteRecipe(recipe: Recipe) {
     this.recipesList.splice(this.recipesList.indexOf(recipe), 1);
-
     this.updatedRecipeList.next(this.recipesList.slice());
   }
 
