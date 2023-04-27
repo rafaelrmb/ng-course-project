@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -10,7 +11,7 @@ export class AuthComponent implements OnInit {
   isLoginMode = false;
   authForm!: FormGroup;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.authForm = this.fb.group({
@@ -25,6 +26,20 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.authForm);
+    if (this.authForm.invalid) {
+      return;
+    }
+    const { email, password } = this.authForm.value;
+
+    if (this.isLoginMode) {
+      return; //todo
+    } else {
+      this.authService.signUp(email, password).subscribe({
+        next: (responseData) => console.log(responseData),
+        error: console.error,
+      });
+    }
+
+    this.authForm.reset();
   }
 }
