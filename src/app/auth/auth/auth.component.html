@@ -1,22 +1,73 @@
 <div class="row">
   <div class="col-xs-12 col-md-6 col-md-offset-3">
-    <form>
-      <div class="form-group">
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+      <div class="form-group mb-2">
         <label for="email">Email</label>
-        <input type="email" class="form-control" id="email" />
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          formControlName="email"
+        />
+        <div
+          class="form-text"
+          *ngIf="
+            authForm.get('email')?.invalid && authForm.get('email')?.touched
+          "
+        >
+          Please enter a valid email
+        </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group mb-2">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" />
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          formControlName="password"
+        />
+        <div
+          class="form-text"
+          *ngIf="
+            authForm.get('password')?.invalid &&
+            authForm.get('password')?.touched
+          "
+        >
+          Password must be at least 6 chars long.
+        </div>
       </div>
 
-      <div class="form-group" *ngIf="!isLoginMode">
+      <div class="form-group mb-2" *ngIf="!isLoginMode">
         <label for="confirm">Confirm Password</label>
-        <input type="password" class="form-control" id="confirm" />
+        <input
+          type="password"
+          class="form-control"
+          id="confirm"
+          formControlName="confirm"
+        />
+        <div
+          class="form-text"
+          *ngIf="
+            authForm.get('confirm')?.value !==
+              authForm.get('password')?.value &&
+            authForm.get('confirm')?.touched
+          "
+        >
+          Password does not match
+        </div>
       </div>
 
-      <button class="btn btn-primary my-4">
+      <button
+        class="btn btn-primary my-4"
+        [disabled]="
+          (!isLoginMode &&
+            authForm.get('password')?.value !==
+              authForm.get('confirm')?.value) ||
+          authForm.invalid
+        "
+        type="submit)"
+      >
         {{ isLoginMode ? "Login" : "Sign Up" }}
       </button>
 
