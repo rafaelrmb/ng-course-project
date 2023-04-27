@@ -11,14 +11,24 @@
         <input type="password" class="form-control" id="password" />
       </div>
 
-      <div class="form-group">
+      <div class="form-group" *ngIf="!isLoginMode">
         <label for="confirm">Confirm Password</label>
         <input type="password" class="form-control" id="confirm" />
       </div>
 
-      <button class="btn btn-primary my-4">Submit</button>
+      <button class="btn btn-primary my-4">
+        {{ isLoginMode ? "Login" : "Sign Up" }}
+      </button>
 
-      <a routerLink="/" class="d-block">Already registered? Sign In</a>
+      <button
+        type="button"
+        (click)="onSwitchMode()"
+        class="btn btn-primary ms-4"
+      >
+        {{
+          !isLoginMode ? "Already registered? Sign In" : "Create your account"
+        }}
+      </button>
     </form>
   </div>
 </div>
