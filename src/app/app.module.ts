@@ -15,7 +15,7 @@ import { ShoppingEditComponent } from './components/shopping-list/shopping-edit/
 import { RecipesComponent } from './components/recipes/recipes.component';
 import { RecipeNotFoundComponent } from './components/recipes/recipe-not-found/recipe-not-found.component';
 import { RecipeEditComponent } from './components/recipes/recipe-edit/recipe-edit.component';
-import { AuthComponent } from './auth/auth/auth.component';
+import { AuthComponent } from './auth/auth.component';
 
 @NgModule({
   declarations: [

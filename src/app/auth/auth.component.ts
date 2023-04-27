@@ -24,5 +24,7 @@ export class AuthComponent implements OnInit {
     this.isLoginMode = !this.isLoginMode;
   }
 
-  onSubmit() {}
+  onSubmit() {
+    console.log(this.authForm);
+  }
 }
