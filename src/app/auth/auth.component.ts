@@ -1,6 +1,7 @@
 import { AuthResponse, AuthService } from './auth.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -14,7 +15,11 @@ export class AuthComponent implements OnInit {
   isLoading = false;
   error!: any;
 
-  constructor(private fb: FormBuilder, private authService: AuthService) {}
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.authForm = this.fb.group({
@@ -49,6 +54,7 @@ export class AuthComponent implements OnInit {
       next: (responseData) => {
         console.log(responseData);
         this.isLoading = false;
+        this.router.navigate(['/recipes']);
       },
       error: (error) => {
         this.error = error;
