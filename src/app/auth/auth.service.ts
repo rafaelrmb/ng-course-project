@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { API_KEY } from './api-key';
 
 interface AuthResponse {
   kind: string;
@@ -18,7 +19,7 @@ export class AuthService {
 
   signUp(email: string, password: string) {
     return this.http.post<AuthResponse>(
-      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDEFeLXa6-5IjVv_3_N6zsv4OWHtJugeDA',
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`,
       { email, password, returnSecureToken: true }
     );
   }
