@@ -10,6 +10,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AuthComponent implements OnInit {
   isLoginMode = false;
   authForm!: FormGroup;
+  isLoading = false;
+  error: string = '';
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
@@ -26,6 +28,8 @@ export class AuthComponent implements OnInit {
   }
 
   onSubmit() {
+    this.isLoading = true;
+
     if (this.authForm.invalid) {
       return;
     }
@@ -35,8 +39,14 @@ export class AuthComponent implements OnInit {
       return; //todo
     } else {
       this.authService.signUp(email, password).subscribe({
-        next: (responseData) => console.log(responseData),
-        error: console.error,
+        next: (responseData) => {
+          console.log(responseData);
+          this.isLoading = false;
+        },
+        error: (error) => {
+          this.error = error.message;
+          this.isLoading = false;
+        },
       });
     }
 

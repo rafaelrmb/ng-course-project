@@ -60,15 +60,25 @@
 
       <button
         class="btn btn-primary my-4"
+        *ngIf="!isLoading"
         [disabled]="
           (!isLoginMode &&
             authForm.get('password')?.value !==
               authForm.get('confirm')?.value) ||
           authForm.invalid
         "
-        type="submit)"
+        type="submit"
       >
         {{ isLoginMode ? "Login" : "Sign Up" }}
+      </button>
+
+      <button class="btn btn-primary" type="button" disabled *ngIf="isLoading">
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+        Loading...
       </button>
 
       <button
