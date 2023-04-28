@@ -58,6 +58,13 @@
         </div>
       </div>
 
+      <div class="alert alert-primary" role="alert" *ngIf="error">
+        <h4 class="alert-heading">An error has occurred</h4>
+        <p>{{ error.error.error.message }}</p>
+        <hr />
+        <p class="mb-0">{{ error.statusText }}</p>
+      </div>
+
       <button
         class="btn btn-primary my-4"
         *ngIf="!isLoading"

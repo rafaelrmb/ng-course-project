@@ -11,7 +11,7 @@ export class AuthComponent implements OnInit {
   isLoginMode = false;
   authForm!: FormGroup;
   isLoading = false;
-  error: string = '';
+  error!: any;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {}
 
@@ -44,7 +44,7 @@ export class AuthComponent implements OnInit {
           this.isLoading = false;
         },
         error: (error) => {
-          this.error = error.message;
+          this.error = error;
           this.isLoading = false;
         },
       });
