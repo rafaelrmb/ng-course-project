@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { API_KEY } from './api-key';
+import { API_KEY } from 'src/api-key';
 import { Subject, catchError, throwError, tap } from 'rxjs';
 import { User } from 'src/app/models/user/user.model';
 
